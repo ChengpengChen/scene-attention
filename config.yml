@@ -1,0 +1,65 @@
+#The configuration for training
+
+gpus: "0"
+
+# settings for optimizer
+optimizer: "sgd"
+lr: 0.001
+wd: 0.0005
+momentum: 0.
+lr_step: '20,35'
+
+
+begin_epoch: 0
+num_epoch: 50
+batch_size: 16
+
+# lr_mult for fullyconnected layer in softmax
+lr_mult_fc: 10
+lr_mult_nonlocal: 1
+dropout_ratio: 0.5
+
+#settings for data
+dataset: "sun397"
+#dataset: "mit67"
+image_size: 224
+
+aug: {
+  force_resize: 256,
+#  resize_shorter: 256,  # open when random crop is selected
+  rand_mirror: true,
+  rand_crop: true,
+  random_erasing: false
+}
+
+#settings for model
+bn_non_local: True
+nonlocal_sub_sample: False
+num_non_local_block: 0
+#prefix: 'resnet50_sun397_nonlocal_bs32_5bk_0902'
+#prefix: 'baseline_resnet50_mit67_bs16_1bk_drop0.5_0903'
+prefix: 'baseline_resnet50_sun397_bs16_drop0.5_1018_stride1'
+
+network: "resnet50"
+
+bn_data_layer: true
+model_load_prefix: "pretrain_models/resnet50_mxnet_bn_data"  #"models/duke/baseline-s16-erase-2loss-1.0"
+model_load_epoch: 0
+
+# duke
+mit67: {
+  num_id: 67,
+  data_dir: 'dataset/MIT67/Images',
+  list_train: 'dataset/MIT67/list/TrainImages.label',
+  list_test: 'dataset/MIT67/list/TestImages.label',
+  batch_size_val: 20
+}
+
+# market-1501
+sun397: {
+  num_id: 397,
+  data_dir: 'dataset/SUN397/Images',
+  list_train: 'dataset/SUN397/list/TrainImages.label',
+  list_test: 'dataset/SUN397/list/TestImages.label',
+  batch_size_val: 25
+}

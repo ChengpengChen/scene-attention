@@ -1,0 +1,10 @@
+*.so
+*.pyc
+log
+models
+pretrain_models
+save_img
+scene_attention_backup
+symbols/*.gv*
+utils/tmp
+.idea
