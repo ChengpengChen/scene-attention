@@ -1,5 +1,6 @@
 *.so
 *.pyc
+dataset
 log
 models
 pretrain_models
@@ -8,3 +9,5 @@ scene_attention_backup
 symbols/*.gv*
 utils/tmp
 .idea
+*.jpg
+*.sh
